@@ -2,9 +2,9 @@ var db = window.openDatabase("UsersDB", "", "UserTable", 1024*1000);
 var round = 0;
 var current_player = 0;
 var is_started = false;
-var createStatement = "CREATE TABLE IF NOT EXISTS Characters (id INTEGER PRIMARY KEY AUTOINCREMENT, player_name TEXT, initiative INTEGER, bonus INTEGER, dexterity INTEGER)";
+var createStatement = "CREATE TABLE IF NOT EXISTS Characters (id INTEGER PRIMARY KEY AUTOINCREMENT, player_name TEXT, initiative INTEGER, bonus INTEGER, dexterity INTEGER, type TEXT)";
 var selectAllStatement = "SELECT * FROM Characters ORDER BY initiative DESC, bonus DESC, dexterity DESC";
-var insertStatement = "INSERT INTO Characters (player_name, initiative, bonus, dexterity) VALUES (?, ?, ?, ?)";
+var insertStatement = "INSERT INTO Characters (player_name, initiative, bonus, dexterity, type) VALUES (?, ?, ?, ?, ?)";
 var deleteStatement = "DELETE FROM Characters WHERE player_name=?";
 createTable();
 refreshView();
@@ -26,13 +26,14 @@ function createTable() {
 }
 
 function addCharacter() {
-    var player_name, initiative, bonus, dexterity;
+    var player_name, initiative, bonus, dexterity, type;
     var fields = $('form[name="addCharacter"]').serializeArray();
     $.each( fields, function(i, fd) {
         if(fd.name === "init_roll") initiative = fd.value;
         if(fd.name === "character_name") player_name = fd.value;
         if(fd.name === "initiative_bonus") bonus = fd.value;
         if(fd.name === "dexterity") dexterity = fd.value;
+        if(fd.name === "whose_character") type = fd.value;
     });
     if (!initiative || !player_name || !bonus || !dexterity) {
         console.log("Missing a field, try again.");
@@ -41,7 +42,7 @@ function addCharacter() {
     }
     db.transaction(function (tx) {
         tx.executeSql(insertStatement,
-            [player_name, initiative, bonus, dexterity]);
+            [player_name, initiative, bonus, dexterity, type]);
     });
     refreshView();
 }
@@ -72,7 +73,9 @@ function dataHandler(transaction, results) {
     else {
         for (var i=0; i<results.rows.length; i++) {
             var row = results.rows.item(i);
-            var context = {roll: row['initiative'], name: row['player_name'], id: i+1};
+            typelabel = ((row['type'] === 'pc') ? 'PC' : 'NPC');
+            var context = {roll: row['initiative'], name: row['player_name'], 
+                            id: i+1, type: row['type'], label: typelabel};
             final_string = final_string + template(context); 
         }
         $('div.players').html(final_string);

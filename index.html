@@ -79,6 +79,17 @@
                                     Dexterity.</span>
                                 </div>
                             </div>
+
+                            <!-- Select Basic -->
+                            <div class="form-group">
+                              <label class="col-md-4 control-label" for="whose_character">Owned By</label>
+                              <div class="col-md-4">
+                                <select id="whose_character" name="whose_character" class="form-control">
+                                  <option value="pc">Player Character</option>
+                                  <option value="npc">NPC/GM</option>
+                                </select>
+                              </div>
+                            </div>
                         </fieldset>
                     </form>
                 </div>
@@ -136,8 +147,8 @@
 
     <!-- Handlebars templates -->
     <script id="player-template" type="text/x-handlebars-template">
-        <div class="player" id="player{{id}}">
-            <div class="roll table_cell">{{roll}}</div>
+        <div class="player type_{{type}}" id="player{{id}}">
+            <div class="roll">{{roll}}<div class="label">{{label}}</div></div>
             <div class="name table_cell">{{name}}</div>
             <div class="remove is_icon table_cell" id="{{name}}">
                 <span class="glyphicon glyphicon-remove"></span>

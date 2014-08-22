@@ -18,16 +18,25 @@ body {
 }
 
 .initiatives .roll {
-    background: linear-gradient(to bottom, #666, #444);
     text-shadow: 1px 1px 2px rgba(0,0,0,1);
     font-size: 70px;
     display: table-cell;
     width: 2.5em;
     text-align: center;
-    color: #eee;
     padding: 0 .25em;
     border-radius: 15px;
+    margin: -30px;
 }
+
+.initiatives .type_pc .roll {
+    background: linear-gradient(to bottom, #050, #070);
+    color: #4f4;
+}
+
+.initiatives .type_npc .roll {
+    background: linear-gradient(to bottom, #500, #700);
+    color: #ff4c4c;
+} 
 
 .initiatives .name {
     font-size: 70px;
@@ -55,6 +64,14 @@ body {
 
 .initiatives .selected .roll {
     background: linear-gradient(to bottom, #ffa319, #e68a00);
+    color: #fff;
+}
+
+.initiatives .label {
+    font-size: 16px;
+    display: block;
+    margin-top: -30px;
+    padding-top: 15px;
 }
 
 .remove,
