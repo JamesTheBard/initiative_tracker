@@ -1,0 +1,129 @@
+body {
+    padding-top: 65px;
+}
+
+.table_row {
+    display: table-row;
+}
+
+.table_cell {
+    display: table-cell;
+}
+
+.initiatives {
+    display: table;
+    position: relative;
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.initiatives .roll {
+    background: linear-gradient(to bottom, #666, #444);
+    text-shadow: 1px 1px 2px rgba(0,0,0,1);
+    font-size: 70px;
+    display: table-cell;
+    width: 2.5em;
+    text-align: center;
+    color: #eee;
+    padding: 0 .25em;
+    border-radius: 15px;
+}
+
+.initiatives .name {
+    font-size: 70px;
+    display: table-cell;
+    padding-left: 40px;
+    width: 100%;
+}
+
+.player {
+    border-collapse: collapse;
+    display: table-row;
+}
+
+.player > * {
+    border-bottom: 1px solid #CCC;
+}
+
+.selected {
+    background: #ff9;
+}
+
+.selected .name {
+    font-weight: bold;
+}
+
+.initiatives .selected .roll {
+    background: linear-gradient(to bottom, #ffa319, #e68a00);
+}
+
+.remove,
+.edit_entry {
+    position: absolute;
+    right: 0px;
+    border: 0px;
+    font-size: 30px;
+    font-weight: bold;
+    color: #AAA;
+}
+
+.edit_entry {
+    position: absolute;
+    right: 0px;
+    margin-top: 35px;
+}
+
+.highlight_icon {
+    color: #333;
+}
+
+.no_results {
+    font-size: 40px;
+    font-weight: bold;
+    font-color: #777;
+    background-color: #565656;
+    color: transparent;
+    text-shadow: 0px 2px 3px rgba(255,255,255,0.5);
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    background-clip: text;
+}
+
+.advance_buttons {
+    padding-bottom: 20px;
+    width: 100%;
+    height: 60px;
+    border-bottom: 1px solid #CCC;
+}
+
+.buttons {
+    display: block;
+    float: left;
+}
+
+.advance_buttons button {
+    width: 120px;
+}
+
+.round {
+    display: block;
+    float: right;
+    font-size: 40px;
+    font-weight: bold;
+    margin-top: -6px;
+    text-align: right;
+}
+
+#round_text {
+    display: inline-block;
+    background: #0A0;
+    width: 2em;
+    text-align: center;
+    border-radius: 10px;
+    color: #EEE;
+}
+
+button#start,
+button#reset_rounds {
+    margin-left: 30px;
+}
