@@ -48,7 +48,8 @@ body {
 }
 
 .initiatives .type_npc .roll {
-    color: #aaa;
+    color: #222;
+    background: linear-gradient(#aaa, #ccc);
 } 
 
 .initiatives .name {

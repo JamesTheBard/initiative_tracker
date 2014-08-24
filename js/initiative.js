@@ -4,6 +4,7 @@ var db = window.openDatabase("UsersDB", "", "UserTable", 1024*1000);
 var round = 0;
 var current_player = 0;
 var is_started = false;
+var no_players = true;
 var createStatement = "CREATE TABLE IF NOT EXISTS Characters (id INTEGER PRIMARY KEY AUTOINCREMENT, player_name TEXT, initiative INTEGER, bonus INTEGER, dexterity INTEGER, type TEXT)";
 var selectAllStatement = "SELECT * FROM Characters ORDER BY initiative DESC, bonus DESC, dexterity DESC";
 var insertStatement = "INSERT INTO Characters (player_name, initiative, bonus, dexterity, type) VALUES (?, ?, ?, ?, ?)";
@@ -71,6 +72,7 @@ function dataHandler(transaction, results) {
         final_string = '<div class="no_results">Feel free to add players to the initiative tracker.</div>';
         $('div.players').html(final_string); 
         $('#start').prop('disabled', true);
+        no_players = true;
     }
     else {
         for (var i=0; i<results.rows.length; i++) {
@@ -82,6 +84,7 @@ function dataHandler(transaction, results) {
         }
         $('div.players').html(final_string);
         $('#start').prop('disabled', false);
+        no_players = false;
     }    
     addDeleteClickEvent();
 }
@@ -153,6 +156,7 @@ $('button[name="about"]').popover({
 });
 
 function startRounds() {
+    if (no_players) return; 
     is_started = true;
     current_player = 1;
     $('.player').first().addClass('selected');
