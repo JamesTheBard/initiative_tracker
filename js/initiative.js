@@ -1,3 +1,5 @@
+var version = "Version 1.2.0 by Jason Weatherly";
+var title = "Initiative Tracker";
 var db = window.openDatabase("UsersDB", "", "UserTable", 1024*1000);
 var round = 0;
 var current_player = 0;
@@ -114,6 +116,23 @@ $('#start').click(function(){
 $('#next_button').click(function(){
     nextPlayer();
 });
+$(document).keypress(function(e){
+    switch(e.which) {
+        case 78: // Letter 'n'
+        case 32: // Spacebar
+            nextPlayer();
+            break;
+        case 80: // Letter 'p'
+            prevPlayer();
+            break;
+        case 83: // Letter 's'
+            startRounds();
+            break;
+        case 72: // Letter 'h'
+            resetPlayer();
+            break;
+    }
+});
 
 $('#prev_button').click(function(){
     prevPlayer();
@@ -121,6 +140,13 @@ $('#prev_button').click(function(){
 
 $('#reset_button').click(function(){
     resetPlayer();
+});
+
+$('button[name="about"]').popover({
+    content: version,
+    placement: 'bottom',
+    container: 'body',
+    title: title
 });
 
 function startRounds() {
