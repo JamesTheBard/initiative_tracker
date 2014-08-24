@@ -118,18 +118,21 @@ $('#next_button').click(function(){
 });
 $(document).keypress(function(e){
     switch(e.which) {
-        case 78: // Letter 'n'
+        case 110: // Letter 'n'
         case 32: // Spacebar
             nextPlayer();
             break;
-        case 80: // Letter 'p'
+        case 112: // Letter 'p'
             prevPlayer();
             break;
-        case 83: // Letter 's'
+        case 115: // Letter 's'
             startRounds();
             break;
-        case 72: // Letter 'h'
+        case 104: // Letter 'h'
             resetPlayer();
+            break;
+        case 78:  // Letter 'N'
+            $('#myModal').modal('show');
             break;
     }
 });
