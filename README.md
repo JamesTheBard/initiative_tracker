@@ -15,7 +15,8 @@ Hotkey Support (Beta)
 ---------------------
 Currently, the Initiative Tracker supports four hotkeys:
 
-- *N* will cycle to the next player.
-- *P* will cycle to the previous player.
-- *S* places the Initiative Tracker into tracking mode.
-- *H* halts the Initiative Tracker.
+- **n** will cycle to the next player.
+- **p** will cycle to the previous player.
+- **s** places the Initiative Tracker into tracking mode.
+- **h** halts the Initiative Tracker.
+- **N** creates a new player.
