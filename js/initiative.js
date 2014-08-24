@@ -1,4 +1,4 @@
-var version = "Version 1.2.0 by Jason Weatherly";
+var version = "Version 1.2.1 by Jason Weatherly";
 var title = "Initiative Tracker";
 var db = window.openDatabase("UsersDB", "", "UserTable", 1024*1000);
 var round = 0;
