@@ -54,6 +54,7 @@ function refreshView() {
     db.transaction( function(tx) {
         tx.executeSql(selectAllStatement, [], dataHandler, errorHandler)
     });
+    if (is_started) updatePlayer();
 }
 
 function errorHandler(transaction, error) {
@@ -119,7 +120,10 @@ $('#start').click(function(){
 $('#next_button').click(function(){
     nextPlayer();
 });
+
+// The Hotkey part
 $(document).keypress(function(e){
+    if ($('form[name="addCharacter"]').is(':visible')) return;
     switch(e.which) {
         case 110: // Letter 'n'
         case 32: // Spacebar
