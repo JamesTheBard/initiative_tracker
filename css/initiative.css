@@ -7,6 +7,8 @@ body {
     width: 100%;
     border-top: 1px solid #222;
     margin-top: 40px;
+	padding-bottom: 10px;
+	clear: both;
 }
 
 .player {
@@ -165,4 +167,90 @@ button#reset_rounds {
 #darkened-btn:hover {
     border-color: #000;
     background-color: #222;
+}
+
+/* All of the triggered events */
+.triggers {
+	display: block;
+	width: 100%;
+	color: #ccc;
+}
+
+.triggers .delay,
+.triggers .delay_inactive {
+	display: block;
+	height: 70px;
+	margin-top: 0px;
+	clear: both;
+}
+
+.triggers .delay {
+	background-color: rgba(255, 255, 255, .1);
+}
+
+.triggers .delay_inactive {
+}
+
+.triggers .round {
+	display: block;
+	float: left;
+	width: 2em;
+	text-align: center;
+	border-radius: 50px;
+	margin-top: 6px;
+	margin-left: 5px;
+	color: white;	
+}
+
+.triggers .delay .round {
+	background: #428bca;
+}
+
+.triggers .delay_inactive .round {
+	background: #2a2a2a;
+	color: #666;
+}
+
+.triggers .name,
+.triggers .effect {
+	display: block;
+	font-size: 40px;
+}
+
+.triggers .delay_inactive .name,
+.triggers .delay_inactive .source,
+.triggers .delay_inactive .effect {
+	color: #555;
+}
+
+.triggers .where {
+	display: block;
+	float: left;
+	padding-left: 10px;
+	margin-top: -4px;
+}
+
+.triggers .name {
+	font-weight: bold;
+	width: 400px;
+	height: 43px;
+	margin-bottom: 6px;
+}
+
+.triggers .source {
+	display: block;
+	font-weight: bold;
+	float: left;
+	text-transform: uppercase;
+	padding-left: 2px;
+}
+
+.triggers .effect {
+	display: block;
+	float: left;
+	font-size: 40px;
+	margin-top: 7px;
+	width: calc(100% - 400px - 2.5em);
+	white-space: nowrap;
+	overflow: scroll;
 }
