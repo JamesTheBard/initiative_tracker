@@ -22,10 +22,9 @@
                     <button type="button" class="close" data-dismiss=
                     "modal"><span aria-hidden="true">&#215;</span><span class=
                     "sr-only">Close</span></button>
-
                     <h2>Add Player</h2>
                 </div>
-
+				
                 <div class="modal-body">
                     <form class="form-horizontal" name="addCharacter">
                         <fieldset>
@@ -102,6 +101,68 @@
             </div>
         </div>
     </div><!-- Beginning of page -->
+    <div class="modal fade" id="effectModal" tabindex="-1" role="dialog" aria-labelledby=
+    "myEffectLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss=
+                    "modal"><span aria-hidden="true">&#215;</span><span class=
+                    "sr-only">Close</span></button>
+                    <h2>Add Effect</h2>
+                </div>
+				
+				<div class="modal-body">
+					<form class="form-horizontal">
+						<fieldset>
+
+						<!-- Text input-->
+						<div class="form-group">
+							<label class="col-md-4 control-label" for="player_name">Source</label>  
+							<div class="col-md-6">
+								<input id="player_name" name="player_name" type="text" placeholder="Player Name/Source" 								class="form-control input-md" required="">
+								<span class="help-block">The name of the player/source.</span>  
+							</div>
+						</div>
+
+						<!-- Text input-->
+						<div class="form-group">
+							<label class="col-md-4 control-label" for="effect_name">Effect</label>  
+							<div class="col-md-6">
+								<input id="effect_name" name="effect_name" type="text" placeholder="Effect/Condition" 								class="form-control input-md" required="">
+								<span class="help-block">The name of the effect/condition.</span>  
+							</div>
+						</div>
+
+						<!-- Text input-->
+						<div class="form-group">
+							<label class="col-md-4 control-label" for="round">Round</label>  
+							<div class="col-md-4">
+								<input id="round" name="round" type="text" placeholder="3" class="form-control input-md" 								required="">
+								<span class="help-block">The round it expires.</span>  
+							</div>
+						</div>
+
+						<!-- Textarea -->
+						<div class="form-group">
+							<label class="col-md-4 control-label" for="description">Comments</label>
+							<div class="col-md-4">                     
+								<textarea class="form-control" id="description" name="description">General information about the effect to include targets.</textarea>
+							</div>
+						</div>
+
+						</fieldset>
+					</form>
+				</div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" id=
+                    "submit_new_effect">Add</button> <button type="button" class=
+                    "btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div><!-- Beginning of page -->
 
     <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div class="container">
@@ -115,6 +176,7 @@
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav navbar-right">
                     <li><button type="button" class="btn btn-primary navbar-btn" id="darkened-btn" id="add-player-btn" data-toggle="modal" data-target="#myModal">Add Player</button></li>
+                    <li><button type="button" class="btn btn-primary navbar-btn" id="darkened-btn" id="add-player-btn" data-toggle="modal" data-target="#effectModal">Add Effect</button></li>
                     <li><button type="button" class="btn btn-primary navbar-btn" id="darkened-btn" name="about">About</button></li>
                 </ul>
             </div><!--/.nav collapse -->

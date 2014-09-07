@@ -5,10 +5,17 @@ var round = 0;
 var current_player = 0;
 var is_started = false;
 var no_players = true;
+/* For the player tracker */
 var createStatement = "CREATE TABLE IF NOT EXISTS Characters (id INTEGER PRIMARY KEY AUTOINCREMENT, player_name TEXT, initiative INTEGER, bonus INTEGER, dexterity INTEGER, type TEXT)";
 var selectAllStatement = "SELECT * FROM Characters ORDER BY initiative DESC, bonus DESC, dexterity DESC";
 var insertStatement = "INSERT INTO Characters (player_name, initiative, bonus, dexterity, type) VALUES (?, ?, ?, ?, ?)";
 var deleteStatement = "DELETE FROM Characters WHERE player_name=?";
+
+/* For the effect tracker */
+var createEffectTable = "CREATE TABLE IF NOT EXISTS Effects (id INTEGER PRIMARY KEY AUTOINCREMENT, player_name TEXT, round INT, short TEXT, description TEXT)";
+var selectAllEffectTable = "SELECT * FROM Effects ORDER BY round ASC, short ASC";
+var insertEffectTable = "INSERT INTO Effects (player_name, round, short, description) VALUES (?, ?, ?, ?)";
+
 createTable();
 refreshView();
 
@@ -26,6 +33,31 @@ function createTable() {
     db.transaction(function (tx) {
         tx.executeSql(createStatement);
     });
+	db.transaction(function (tx) {
+		tx.executeSql(createEffectTable);
+	});
+}
+
+/* var insertEffectTable = "INSERT INTO Effects (player_name, round, short, description) VALUES (?, ?, ?, ?)"; */
+function addEffect() {
+	var player_name, round, short, description;
+	var fields = $('form[name="addEffect"]').serializeArray();
+	$.each(fields, function(i, fd){
+		if(fd.name === "player_name") player_name = fd.value;
+		if(fd.name === "effect_name") short = fd.value;
+		if(fd.name === "round") round = fd.value;
+		if(fd.name === "description") description = fd.value;
+	})
+	if (!player_name || !round || !short || !description) {
+		console.log("Missing a field, try again.");
+		alert("You're missing a field, try again.");
+		return;
+	}
+	db.transaction(function (tx) {
+		tx.executeSql(insertEffect,
+			[player_name, round, short, description]);
+	});
+	refreshView();
 }
 
 function addCharacter() {
@@ -52,7 +84,8 @@ function addCharacter() {
 
 function refreshView() {
     db.transaction( function(tx) {
-        tx.executeSql(selectAllStatement, [], dataHandler, errorHandler)
+        tx.executeSql(selectAllStatement, [], dataHandler, errorHandler);
+		tx.executeSql(selectAllEffects, [], dataHandlerEffects, errorHandler);
     });
     if (is_started) updatePlayer();
 }
@@ -88,6 +121,19 @@ function dataHandler(transaction, results) {
         no_players = false;
     }    
     addDeleteClickEvent();
+}
+
+function dataHandlerEffect(transaction, results) {
+	var final_string = "";
+	var source = $("#effect-template").html();
+	var template = Handlebars.compile(source);
+	
+	if (results.rows.length > 0) {
+		for (var i=0; i<results.rows.length; i++) {
+			var row = results.rows.item(i);
+			typelabel = (())
+		}
+	}
 }
 
 function addOnClickEvent() {
