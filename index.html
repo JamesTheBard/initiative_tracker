@@ -113,7 +113,7 @@
                 </div>
 				
 				<div class="modal-body">
-					<form class="form-horizontal">
+					<form class="form-horizontal" name="addEffect">
 						<fieldset>
 
 						<!-- Text input-->
@@ -147,11 +147,20 @@
 						<div class="form-group">
 							<label class="col-md-4 control-label" for="description">Comments</label>
 							<div class="col-md-4">                     
-								<textarea class="form-control" id="description" name="description">General information about the effect to include targets.</textarea>
+								<textarea class="form-control" id="description" name="description"></textarea>
 							</div>
 						</div>
 
-						</fieldset>
+	                            <div class="form-group">
+                              <label class="col-md-4 control-label" for="whose_character">Owned By</label>
+                              <div class="col-md-4">
+                                <select id="whose_character" name="whose_character" class="form-control">
+                                  <option value="pc">Player Character</option>
+                                  <option value="npc">NPC/GM</option>
+                                </select>
+                              </div>
+                            </div>
+ 					</fieldset>
 					</form>
 				</div>
 
@@ -176,7 +185,7 @@
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav navbar-right">
                     <li><button type="button" class="btn btn-primary navbar-btn" id="darkened-btn" id="add-player-btn" data-toggle="modal" data-target="#myModal">Add Player</button></li>
-                    <li><button type="button" class="btn btn-primary navbar-btn" id="darkened-btn" id="add-player-btn" data-toggle="modal" data-target="#effectModal">Add Effect</button></li>
+                    <li><button type="button" class="btn btn-primary navbar-btn add-effect-btn" id="darkened-btn" id="add-effect-btn" data-toggle="modal" data-target="#effectModal" disabled>Add Effect</button></li>
                     <li><button type="button" class="btn btn-primary navbar-btn" id="darkened-btn" name="about">About</button></li>
                 </ul>
             </div><!--/.nav collapse -->
@@ -199,24 +208,8 @@
         <div class="initiatives">
             <div class="players"></div>
         </div>
-		<div class="triggers">
-			<div class="delay_inactive">
-				<span class="round">3</span>
-				<div class="where">
-					<span class="name">Spell: Bane</span>
-					<span class="source">Tol Jedrich</span>
-				</div>
-				<span class="effect">ATK/Abil rolls 1d4 penalty. Targeted Orcs 1/2/3</span>
-			</div>
-			<div class="delay">
-				<span class="round">7</span>
-				<div class="where">
-					<span class="name">Spell: Bane</span>
-					<span class="source">Tol Jedrich</span>
-				</div>
-				<span class="effect">Orcs 1-3</span>
-			</div>
-		</div>
+ 		<div class="triggers">
+        </div>
     </div>
 	
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
@@ -246,14 +239,17 @@
 	
 	<!-- Handlebars template for Effect Tracker -->
 	<script id="effect-template" type="text/x-handlebars-template">
-		<div class="delay">
-			<span class="round">{{round}}</span>
+		<div class="{{delay}}">
+			<span class="round {{type}}">{{round}}</span>
 			<div class="where">
 				<span class="name">{{effect}}</span>
 				<span class="source">{{source}}</span>
 			</div>
 			<span class="effect">{{description}}</span>
-		</div>
+            <div class="remove_effect is_icon" effect="{{id}}">
+                <span class="glyphicon glyphicon-remove"></span>
+            </div>
+ 		</div>
 	</script>
 </body>
 </html>

@@ -82,7 +82,8 @@ body {
 }
 
 .remove,
-.edit_entry {
+.edit_entry,
+.remove_effect {
     float: right;
     font-size: 30px;
     font-weight: bold;
@@ -172,14 +173,15 @@ button#reset_rounds {
 /* All of the triggered events */
 .triggers {
 	display: block;
+    position: relative;
 	width: 100%;
 	color: #ccc;
+    margin-top: 50px;
 }
 
-.triggers .delay,
-.triggers .delay_inactive {
+.triggers .delay {
 	display: block;
-	height: 70px;
+	min-height: 70px;
 	margin-top: 0px;
 	clear: both;
 }
@@ -188,7 +190,8 @@ button#reset_rounds {
 	background-color: rgba(255, 255, 255, .1);
 }
 
-.triggers .delay_inactive {
+.triggers .delay.inactive {
+	background-color: rgba(0, 0, 0, .1);
 }
 
 .triggers .round {
@@ -202,11 +205,15 @@ button#reset_rounds {
 	color: white;	
 }
 
-.triggers .delay .round {
+.triggers .delay .round.pc {
 	background: #428bca;
 }
 
-.triggers .delay_inactive .round {
+.triggers .delay .round.npc {
+    background: #;
+}
+
+.triggers .delay.inactive .round {
 	background: #2a2a2a;
 	color: #666;
 }
@@ -217,9 +224,9 @@ button#reset_rounds {
 	font-size: 40px;
 }
 
-.triggers .delay_inactive .name,
-.triggers .delay_inactive .source,
-.triggers .delay_inactive .effect {
+.triggers .delay.inactive .name,
+.triggers .delay.inactive .source,
+.triggers .delay.inactive .effect {
 	color: #555;
 }
 
@@ -237,6 +244,10 @@ button#reset_rounds {
 	margin-bottom: 6px;
 }
 
+.remove_effect {
+    position: absolute;
+}
+
 .triggers .source {
 	display: block;
 	font-weight: bold;
@@ -246,11 +257,20 @@ button#reset_rounds {
 }
 
 .triggers .effect {
-	display: block;
+	display: inline-block;
 	float: left;
 	font-size: 40px;
 	margin-top: 7px;
 	width: calc(100% - 400px - 2.5em);
-	white-space: nowrap;
-	overflow: scroll;
+    white-space: nowrap;
+    overflow-x: scroll;
+    overflow-y: hidden;
+}
+
+.triggers ::-webkit-scrollbar {
+    display: none;
+}
+
+textarea[name="description"] {
+    width: 280px;
 }
