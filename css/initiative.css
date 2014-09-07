@@ -173,7 +173,6 @@ button#reset_rounds {
 /* All of the triggered events */
 .triggers {
 	display: block;
-    position: relative;
 	width: 100%;
 	color: #ccc;
     margin-top: 50px;
@@ -184,6 +183,7 @@ button#reset_rounds {
 	min-height: 70px;
 	margin-top: 0px;
 	clear: both;
+    position: relative;
 }
 
 .triggers .delay {
@@ -210,7 +210,7 @@ button#reset_rounds {
 }
 
 .triggers .delay .round.npc {
-    background: #;
+    background: #428bca;;
 }
 
 .triggers .delay.inactive .round {
@@ -246,6 +246,8 @@ button#reset_rounds {
 
 .remove_effect {
     position: absolute;
+    top: 18px;
+    left: -40px;
 }
 
 .triggers .source {
