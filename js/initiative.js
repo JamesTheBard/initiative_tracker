@@ -1,4 +1,4 @@
-var version = "Version 1.2.999 by Jason Weatherly";
+var version = "Version 1.3.1 by Jason Weatherly";
 var title = "Initiative Tracker";
 var db = window.openDatabase("UsersDB", "", "UserTable", 1024*1000);
 var round = 0;
@@ -243,6 +243,7 @@ $(document).keypress(function(e){
         case 126:
             clearTables();
             createTable();
+            resetPlayer();
             refreshView();
             break;
     }
