@@ -20,3 +20,4 @@ Currently, the Initiative Tracker supports four hotkeys:
 - **s** places the Initiative Tracker into tracking mode.
 - **h** halts the Initiative Tracker.
 - **N** creates a new player.
+- **~** clears the board of all players and effects, and halts Initiative Tracker order.
