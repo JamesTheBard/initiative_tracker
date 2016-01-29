@@ -7,6 +7,8 @@ var is_started = false;
 var no_players = true;
 /* For the player tracker */
 var createStatement = "CREATE TABLE IF NOT EXISTS Characters (id INTEGER PRIMARY KEY AUTOINCREMENT, player_name TEXT, initiative INTEGER, bonus INTEGER, dexterity INTEGER, type TEXT)";
+var clearPlayers = "DROP TABLE Characters";
+var clearEffects = "DROP TABLE Effects";
 var selectAllStatement = "SELECT * FROM Characters ORDER BY initiative DESC, bonus DESC, dexterity DESC";
 var insertStatement = "INSERT INTO Characters (player_name, initiative, bonus, dexterity, type) VALUES (?, ?, ?, ?, ?)";
 var deleteStatement = "DELETE FROM Characters WHERE player_name=?";
@@ -44,6 +46,15 @@ function createTable() {
 	db.transaction(function (tx) {
 		tx.executeSql(createEffectTable);
 	});
+}
+
+function clearTables() {
+    db.transaction(function (tx) {
+        tx.executeSql(clearPlayers);
+    });
+    db.transaction(function (tx) {
+        tx.executeSql(clearEffects);
+    });
 }
 
 function addEffect() {
@@ -228,6 +239,11 @@ $(document).keypress(function(e){
             break;
         case 78:  // Letter 'N'
             $('#myModal').modal('show');
+            break;
+        case 126:
+            clearTables();
+            createTable();
+            refreshView();
             break;
     }
 });
